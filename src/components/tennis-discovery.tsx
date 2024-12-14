@@ -1,41 +1,25 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea} from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Twitter, Instagram, PlusCircle, Search, Settings, ChevronDown, ChevronRight, BookmarkPlus, Share2, Bell, ExternalLink, CalendarIcon, Home, BookOpen, Filter } from 'lucide-react'
-import { format } from "date-fns"
+import { Twitter, Instagram, PlusCircle, Search, Settings, ChevronRight, Home, BookOpen, Filter } from 'lucide-react'
 import Link from 'next/link'
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
-import { ErrorBoundary } from 'react-error-boundary'
 
 const connectedAccounts = [
   { id: 1, name: 'Twitter', icon: Twitter },
