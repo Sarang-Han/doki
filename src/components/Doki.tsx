@@ -220,10 +220,12 @@ export function Doki() {
                 <Home className="h-5 w-5 mr-2" />
                 홈
               </Button>
-              <Button variant="ghost" size="sm">
-                <Search className="h-5 w-5 mr-2" />
-                검색
-              </Button>
+              <Link href="/search">
+                <Button variant="ghost" size="sm">
+                  <Search className="h-5 w-5 mr-2" />
+                  검색
+                </Button>
+              </Link>
               <Button variant="ghost" size="sm">
                 <BookOpen className="h-5 w-5 mr-2" />
                 북마크
