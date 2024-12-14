@@ -61,10 +61,10 @@ const interests = [
 
 // Sample data for new discoveries
 const newDiscoveries = [
-  { name: 'Roger Federer', handle: '@rogerfederer', image: '/placeholder.svg?height=100&width=100', followers: '8.5M' },
-  { name: 'Naomi Osaka', handle: '@naomiosaka', image: '/placeholder.svg?height=100&width=100', followers: '1.2M' },
-  { name: 'Andy Murray', handle: '@andy_murray', image: '/placeholder.svg?height=100&width=100', followers: '3.7M' },
-  { name: 'Simona Halep', handle: '@Simona_Halep', image: '/placeholder.svg?height=100&width=100', followers: '1.5M' },
+  { name: 'Roger Federer', handle: '@rogerfederer', image: '/cat.jpg', followers: '8.5M' },
+  { name: 'Naomi Osaka', handle: '@naomiosaka', image: '/cat.jpg', followers: '1.2M' },
+  { name: 'Andy Murray', handle: '@andy_murray', image: '/cat.jpg', followers: '3.7M' },
+  { name: 'Simona Halep', handle: '@Simona_Halep', image: '/cat.jpg', followers: '1.5M' },
 ]
 
 // Sample data for recommended posts
@@ -90,7 +90,7 @@ export function TennisDiscoveryComponent() {
       <aside className="w-80 border-r flex flex-col">
           <div className="p-6 border-b text-center">
             <Avatar className="w-24 h-24 mx-auto mb-4">
-              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="이화연" />
+              <AvatarImage src="/cat.jpg" alt="이화연" />
               <AvatarFallback>이화연</AvatarFallback>
             </Avatar>
             <h2 className="text-xl font-semibold">이화연</h2>

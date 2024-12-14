@@ -130,7 +130,7 @@ export function Doki() {
         <aside className="w-80 border-r flex flex-col">
           <div className="p-6 border-b text-center">
             <Avatar className="w-24 h-24 mx-auto mb-4">
-              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="이화연" />
+              <AvatarImage src="/cat.jpg" alt="이화연" />
               <AvatarFallback>이화연</AvatarFallback>
             </Avatar>
             <h2 className="text-xl font-semibold">이화연</h2>
