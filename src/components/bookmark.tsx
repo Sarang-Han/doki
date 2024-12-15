@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Twitter, Instagram, PlusCircle, Search, Settings, ChevronRight, Home, BookOpen, Filter } from 'lucide-react'
 import Link from 'next/link'
+import { CollectionCard } from "@/components/ui/collection-card"
 
 import {
   Collapsible,
@@ -17,6 +18,38 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
 import { ErrorBoundary } from 'react-error-boundary'
+
+export type Collection = {
+    id: string;
+    title: string;
+    image: string;
+    tags: string[];
+    itemCount: number;
+  }
+
+  export const collections: Collection[] = [
+    {
+      id: '1',
+      title: '조코비치 하이라이트',
+      image: '/pch.png',
+      tags: ['선수', '하이라이트', 'ATP'],
+      itemCount: 12
+    },
+    {
+      id: '2',
+      title: '테니스 라켓 정보',
+      image: '/pch.png',
+      tags: ['장비', '리뷰', '정보'],
+      itemCount: 5
+    },
+    {
+      id: '3',
+      title: '선수 인터뷰 모음',
+      image: '/pch.png',
+      tags: ['인터뷰', 'ATP', 'WTA'],
+      itemCount: 8
+    },
+  ];
 
 // 샘플 데이터
 const connectedAccounts = [
@@ -57,8 +90,7 @@ const interests = [
   },
 ]
 
-
-export function Doki() {
+export function Bookmark() {
   const [openInterests, setOpenInterests] = useState<number[]>([])
   
   const toggleInterest = (id: number) => {
@@ -66,6 +98,7 @@ export function Doki() {
       prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
     )
   }
+
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <div className="flex h-screen bg-background">
@@ -153,11 +186,11 @@ export function Doki() {
         {/* 오른쪽 메인 컨텐츠 */}
         <main className="flex-1 overflow-hidden flex flex-col">
           <header className="flex justify-between items-center p-4 border-b">
-          <div className="flex items-center space-x-4">
-          <Link href="/">
-            <img src="https://i.imgur.com/ybqGyvO.png" alt="Doki Logo" className="h-9 w-17 cursor-pointer" />
-          </Link>
-         </div>
+            <div className="flex items-center space-x-4">
+              <Link href="/">
+                <img src="https://i.imgur.com/ybqGyvO.png" alt="Doki Logo" className="h-9 w-17 cursor-pointer" />
+              </Link>
+            </div>
             <nav className="flex items-center space-x-4">
               <Button variant="ghost" size="sm">
                 <Home className="h-5 w-5 mr-2" />
@@ -169,96 +202,41 @@ export function Doki() {
                   검색
                 </Button>
               </Link>
-              <Link href="/bookmark">
               <Button variant="ghost" size="sm">
                 <BookOpen className="h-5 w-5 mr-2" />
                 북마크
               </Button>
-              </Link>
               <Button variant="ghost" size="sm">
                 <Settings className="h-5 w-5 mr-2" />
                 설정
               </Button>
             </nav>
           </header>
+          
           <ScrollArea className="flex-1">
-            <div className="p-4 space-y-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">나의 구독 목록</h2>
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">컬렉션</h2>
                 <div className="flex space-x-2">
                   <Button variant="outline" size="sm">
                     <Filter className="h-4 w-4 mr-2" />
                     필터
                   </Button>
-                  <Button variant="outline" size="sm">
-                    <PlusCircle className="h-4 w-4 mr-2" />
-                    새 그룹 추가
-                  </Button>
                 </div>
               </div>
-              {[
-                { name: '테니스', accounts: [
-                  { name: 'Rafael Nadal', handle: '@RafaelNadal', image: '/placeholder.svg?height=40&width=40', newPosts: 3 },
-                  { name: 'Serena Williams', handle: '@serenawilliams', image: '/placeholder.svg?height=40&width=40', newPosts: 1 },
-                  { name: 'Novak Djokovic', handle: '@DjokerNole', image: '/placeholder.svg?height=40&width=40', newPosts: 5 },
-                  { name: 'ATP Tour', handle: '@atptour', image: '/placeholder.svg?height=40&width=40', newPosts: 10 },
-                  { name: 'WTA', handle: '@WTA', image: '/placeholder.svg?height=40&width=40', newPosts: 7 },
-                  { name: 'Tennis TV', handle: '@TennisTV', image: '/placeholder.svg?height=40&width=40', newPosts: 2 },
-                ]},
-                { name: '요리', accounts: [
-                  { name: 'Gordon Ramsay', handle: '@GordonRamsay', image: '/placeholder.svg?height=40&width=40', newPosts: 4 },
-                  { name: 'Jamie Oliver', handle: '@jamieoliver', image: '/placeholder.svg?height=40&width=40', newPosts: 2 },
-                  { name: 'Maangchi', handle: '@maangchi', image: '/placeholder.svg?height=40&width=40', newPosts: 1 },
-                ]},
-                { name: '여행', accounts: [
-                  { name: 'Lonely Planet', handle: '@lonelyplanet', image: '/placeholder.svg?height=40&width=40', newPosts: 8 },
-                  { name: 'National Geographic', handle: '@NatGeo', image: '/placeholder.svg?height=40&width=40', newPosts: 6 },
-                  { name: 'Rick Steves', handle: '@RickSteves', image: '/placeholder.svg?height=40&width=40', newPosts: 3 },
-                ]},
-              ].map((group, index) => (
-                <Card key={`group-${index}`} className="mb-6">
-                  <CardContent className="p-4 bg-background">
-                    <h3 className="text-xl font-semibold mb-4">{group.name}</h3>
-                    <div className="space-y-2">
-                      {group.accounts.map((account) => (
-                        <Dialog key={account.handle}>
-                          <DialogTrigger asChild>
-                            <div className="flex items-center justify-between p-2 bg-white rounded-lg shadow-sm cursor-pointer hover:bg-accent transition-colors duration-200">
-                              <div className="flex items-center space-x-3">
-                                <Avatar className="w-10 h-10">
-                                  <AvatarImage src={account.image} alt={account.name} />
-                                  <AvatarFallback>{account.name[0]}</AvatarFallback>
-                                </Avatar>
-                                <div>
-                                  <p className="font-medium">{account.name}</p>
-                                  <p className="text-sm text-muted-foreground">{account.handle}</p>
-                                </div>
-                              </div>
-                              <div className="flex flex-col items-end">
-                                <span className="text-xs text-muted-foreground mb-1">오전 12:30</span>
-                                {account.newPosts > 0 && (
-                                  <Badge variant="destructive" className="rounded-full px-2">
-                                    {account.newPosts}
-                                  </Badge>
-                                )}
-                              </div>
-                            </div>
-                          </DialogTrigger>
-                          <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                              <DialogTitle>{account.name}</DialogTitle>
-                            </DialogHeader>
-                            <div className="py-4">
-                              <p>Recent posts from {account.name} will be displayed here.</p>
-                              {/* Add content for recent posts here */}
-                            </div>
-                          </DialogContent>
-                        </Dialog>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="border border-dashed rounded-lg overflow-hidden flex flex-col hover:bg-accent/50 cursor-pointer transition-colors">
+                  <div className="flex-1 flex flex-col items-center justify-center p-4">
+                    <PlusCircle className="h-8 w-8 mb-2" />
+                    <span className="text-sm font-medium">새 컬렉션 만들기</span>
+                  </div>
+                </div>
+                
+                {collections.map((collection) => (
+                  <CollectionCard key={collection.id} collection={collection} />
+                ))}
+              </div>
             </div>
           </ScrollArea>
         </main>
